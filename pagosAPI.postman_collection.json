@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "232ef545-6814-440b-96fd-5f957624731c",
+		"name": "pagosAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10721068"
+	},
+	"item": [
+		{
+			"name": "crearPago",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"concepto\": \"Pago de servicios\",\r\n  \"cantidad\": 1,\r\n  \"quienRealizaPago\": \"Nombre del que paga\",\r\n  \"beneficiario\": \"Nombre del beneficiario\",\r\n  \"monto\": 100.0,\r\n  \"estatus\": \"PENDIENTE\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pagos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pagos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verificarEstatusPago",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pagos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pagos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cambiarEstatusPago",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pagos/1/estatus?nuevoEstatus=ALTA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pagos",
+						"1",
+						"estatus"
+					],
+					"query": [
+						{
+							"key": "nuevoEstatus",
+							"value": "ALTA"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

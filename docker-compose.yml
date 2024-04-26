@@ -1,0 +1,55 @@
+version: '3'
+services:
+  app:
+    build: .
+    networks:
+      - mired
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/BANK_Xx?allowPublicKeyRetrieval=true
+      - spring.rabbitmq.host=rabbitmqserv
+      - spring.rabbitmq.port=5672
+    depends_on:
+      - mysqldb
+      - rabbitmqserv
+  mysqldb:
+    build: ./mysql
+    restart: always
+    networks:
+      - mired
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123-456
+      MYSQL_DATABASE: BANK_Xx
+  rabbitmqserv:
+    build: ./rabbitmq
+    restart: always
+    networks:
+      - mired
+    ports:
+      - "8212:15671"
+      - "8211:15672"
+      - "8213:15691"
+      - "8214:15692"
+      - "8215:25672"
+      - "8216:4369"
+      - "8217:5671"
+      - "8218:5672"
+    hostname: rabbitmqserv
+    volumes:
+      - ./rabbitmq_data:/var/lib/rabbitmq
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./definitions.json:/etc/rabbitmq/definitions.json
+    environment:
+      RABBITMQ_NODENAME: MYNODE@rabbitmqserv 
+networks:
+  mired:
+    name: mired
+    driver: bridge
+volumes:
+  mysql_data:
+  rabbitmq_data:
