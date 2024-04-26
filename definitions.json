@@ -1,4 +1,25 @@
 {
+    "vhosts": [
+        {
+            "name": "/"
+        }
+    ],
+    "users": [
+        {
+            "name": "guest",
+            "password": "guest",
+            "tags": "administrator"
+        }
+    ],
+    "permissions": [
+        {
+            "user": "guest",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ],
     "queues": [
         {
             "name": "cambio-estatus-pago",
@@ -30,5 +51,5 @@
             "routing_key": "cambio-estatus-pago",
             "arguments": {}
         }
-      ]
-     }
+    ]
+}

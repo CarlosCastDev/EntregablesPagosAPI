@@ -45,7 +45,9 @@ services:
       - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ./definitions.json:/etc/rabbitmq/definitions.json
     environment:
-      RABBITMQ_NODENAME: MYNODE@rabbitmqserv 
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST: /
 networks:
   mired:
     name: mired
