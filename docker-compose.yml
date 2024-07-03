@@ -14,6 +14,8 @@ services:
     depends_on:
       - mysqldb
       - rabbitmqserv
+    volumes:
+      - ./app_data:/app/data
   mysqldb:
     build: ./mysql
     restart: always
@@ -56,3 +58,4 @@ networks:
 volumes:
   mysql_data:
   rabbitmq_data:
+  app_data:
